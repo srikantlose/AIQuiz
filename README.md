@@ -1,16 +1,35 @@
-# ai_learning_tracker
+# AI-Powered Climate Learning Tracker
 
-A new Flutter project.
+This Flutter application is an interactive climate change quiz that adapts to user performance using an AI recommendation model. It helps users learn about climate science topics tailored to their knowledge level.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Multiple-choice quiz with climate change-related questions.
+- AI-based recommender system that suggests the next learning topic based on quiz scores.
+- Dynamic quiz generation according to recommended topics.
+- Smooth and user-friendly UI with progress tracking.
+- Retake and continue quiz options for flexible learning.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies Used
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter**: Frontend mobile UI framework.
+- **TensorFlow Lite**: On-device machine learning inference.
+- **Dart**: Application logic and state management.
+- **Python/TensorFlow**: Model training and export to TFLite.
+- **Git**: Version control.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Project Structure
+
+- `/lib`: Flutter app source code.
+- `/lib/services`: AI recommender service.
+- `/lib/screens`: Quiz screens.
+- `/assets/models`: TFLite recommendation model.
+- `/model_training`: Python scripts for model training and export.
+
+## How to Run
+
+1. Clone the repository:
+2.Navigate to the project directory and get dependencies:
+3.Run the app(on any physical android device/emulator) 
+
+  
