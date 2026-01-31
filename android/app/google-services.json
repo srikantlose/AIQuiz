@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "110174417153",
+    "firebase_url": "https://ai-learning-tracker-97e11-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ai-learning-tracker-97e11",
+    "storage_bucket": "ai-learning-tracker-97e11.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110174417153:android:ae7abc7e51e2cfd4f42b00",
+        "android_client_info": {
+          "package_name": "com.mycompany.ai_learning_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKgOrR7XKT_h2CYN38ZjpjiD8xEIE2iMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110174417153:android:425946e0d843450df42b00",
+        "android_client_info": {
+          "package_name": "com.mycompany.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKgOrR7XKT_h2CYN38ZjpjiD8xEIE2iMQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
