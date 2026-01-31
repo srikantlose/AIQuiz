@@ -1,11 +1,11 @@
-// lib/services/ai_recommender.dart
+import 'dart:math';
 import 'package:tflite_flutter/tflite_flutter.dart';
 
 class AIRecommender {
   Interpreter? _interpreter;
-  bool _isLoaded = false;
+  bool _loaded = false;
+  final Random _random = Random();
 
-  // topics must match the order used during training
   final List<String> topics = [
     "Basics of Climate Change",
     "Carbon Cycle & Greenhouse Gases",
@@ -14,46 +14,44 @@ class AIRecommender {
     "Advanced Climate Modeling",
   ];
 
-  // call this at app startup (or in initState) and await it
   Future<void> loadModel() async {
-    if (_isLoaded) return;
-    // asset path should match pubspec entry
-    _interpreter = await Interpreter.fromAsset('models/recommendation_model.tflite');
-
-    _isLoaded = true;
+    if (_loaded) return;
+    _interpreter =
+        await Interpreter.fromAsset('assets/models/recommendation_model.tflite');
+    _loaded = true;
   }
 
-  // score is 0..100
   Future<String> recommendNextTopic(int score) async {
-    if (!_isLoaded) {
-      await loadModel();
-    }
-    final normalized = score / 100.0;
+    if (!_loaded) await loadModel();
 
-    // input: shape [1,1] for our model
-    var input = List.filled(1, List.filled(1, normalized)); // [[0.85]]
-    // output: shape [1, num_classes]
-    var output = List.generate(1, (_) => List.filled(topics.length, 0.0));
+    final input = [
+      [score / 100.0]
+    ];
+    final output =
+        List.generate(1, (_) => List.filled(topics.length, 0.0));
 
     _interpreter!.run(input, output);
 
     final probs = output[0];
-    // find argmax
-    double maxv = probs[0];
-    int maxi = 0;
-    for (int i = 1; i < probs.length; i++) {
-      if (probs[i] > maxv) {
-        maxv = probs[i];
-        maxi = i;
-      }
-    }
 
-    return topics[maxi];
+    // --- FIX: stochastic selection among top 2 ---
+    final indexed = List.generate(
+      probs.length,
+      (i) => MapEntry(i, probs[i]),
+    );
+
+    indexed.sort((a, b) => b.value.compareTo(a.value));
+
+    // pick best OR second-best (prevents same topic always)
+    final chosen =
+        indexed[_random.nextBool() ? 0 : min(1, indexed.length - 1)];
+
+    return topics[chosen.key];
   }
 
   void close() {
     _interpreter?.close();
     _interpreter = null;
-    _isLoaded = false;
+    _loaded = false;
   }
 }
